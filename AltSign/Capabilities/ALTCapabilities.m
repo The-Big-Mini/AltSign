@@ -15,11 +15,20 @@ ALTEntitlement const ALTEntitlementAppGroups = @"com.apple.security.application-
 ALTEntitlement const ALTEntitlementGetTaskAllow = @"get-task-allow";
 ALTEntitlement const ALTEntitlementTeamIdentifier = @"com.apple.developer.team-identifier";
 ALTEntitlement const ALTEntitlementInterAppAudio = @"inter-app-audio";
+ALTEntitlement const ALTEntitlementIncreasedDebuggingMemoryLimit = @"com.apple.developer.kernel.increased-debugging-memory-limit";
+ALTEntitlement const ALTEntitlementExtendedVirtualAddressing = @"com.apple.developer.kernel.extended-virtual-addressing";
+ALTEntitlement const ALTEntitlementNetworkExtension = @"com.apple.developer.networking.networkextension";
+
+// Capabilities
+ALTCapability const ALTCapabilityIncreasedMemoryLimit = @"INCREASED_MEMORY_LIMIT";
+ALTCapability const ALTCapabilityIncreasedDebuggingMemoryLimit = @"INCREASED_MEMORY_LIMIT_DEBUGGING";
+ALTCapability const ALTCapabilityExtendedVirtualAddressing = @"EXTENDED_VIRTUAL_ADDRESSING";
 
 // Features
 ALTFeature const ALTFeatureGameCenter = @"gameCenter";
 ALTFeature const ALTFeatureAppGroups = @"APG3427HIY";
 ALTFeature const ALTFeatureInterAppAudio = @"IAD53UNK2F";
+ALTFeature const ALTFeatureNetworkExtension = @"NWEXT04537";
 
 _Nullable ALTEntitlement ALTEntitlementForFeature(ALTFeature feature)
 {
@@ -31,7 +40,11 @@ _Nullable ALTEntitlement ALTEntitlementForFeature(ALTFeature feature)
     {
         return ALTEntitlementInterAppAudio;
     }
-    
+    else if ([feature isEqualToString:ALTFeatureNetworkExtension])
+    {
+        return ALTEntitlementNetworkExtension;
+    }
+
     return nil;
 }
 
@@ -45,6 +58,10 @@ _Nullable ALTFeature ALTFeatureForEntitlement(ALTEntitlement entitlement)
     {
         return ALTFeatureInterAppAudio;
     }
-    
+    else if ([entitlement isEqualToString:ALTEntitlementNetworkExtension])
+    {
+        return ALTFeatureNetworkExtension;
+    }
+
     return nil;
 }
